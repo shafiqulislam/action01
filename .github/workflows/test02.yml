@@ -19,6 +19,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          extensions: mbstring, curl
 
       - name: Verify PHP
         run: php -v
@@ -28,3 +29,6 @@ jobs:
 
       - name: Verify Laravel
         run: php artisan --version
+    
+
+
