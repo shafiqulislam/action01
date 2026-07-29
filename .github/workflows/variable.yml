@@ -5,7 +5,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Print Username
-        run: echo "${{ secrets.USERNAME }}"
+        run: echo "${{ vars.USERNAME }}"
+      
+      - name: Print Password
+        run: echo "${{ vars.PASSWORD }}"
