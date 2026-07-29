@@ -1,0 +1,11 @@
+name: Secrets  Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print App Key
+        run: echo "${{ secrets.APP_KEY }}"
