@@ -1,0 +1,19 @@
+name: Environment Demo
+
+on: [push]
+
+env:
+  APP_NAME: Laravel Application
+  PHP_VERSION: "8.2"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - run: echo $APP_NAME
+
+      - run: echo $PHP_VERSION
