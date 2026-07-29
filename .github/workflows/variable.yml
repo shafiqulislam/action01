@@ -1,0 +1,11 @@
+name: Secrets Variable Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Username
+        run: echo "${{ secrets.USERNAME }}"
