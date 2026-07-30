@@ -1,0 +1,62 @@
+name: Enterprise Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+          extensions: >
+            mbstring,
+            xml,
+            curl,
+            zip,
+            gd,
+            intl,
+            bcmath,
+            pdo_mysql,
+            redis
+
+          tools: |
+            composer:2.8.12
+            phpunit:11
+            phpstan:2
+            psalm:6
+
+          coverage: none
+
+          ini-values: |
+            memory_limit=1G
+            upload_max_filesize=100M
+            post_max_size=100M
+            max_execution_time=300
+
+      - name: Verify PHP
+        run: php -v
+
+      - name: Verify Composer
+        run: composer --version
+
+      - name: Verify PHPUnit
+        run: phpunit --version
+
+      - name: Verify PHPStan
+        run: phpstan --version
+
+      - name: Verify Psalm
+        run: psalm --version
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run Tests
+        run: php artisan test
